@@ -1,0 +1,97 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Uni/6/DSD/HW/Tea/simulation/modelsim
+Etea
+Z1 w1626080816
+Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 0
+R0
+Z6 8E:/Uni/6/DSD/HW/Tea/tea.vhd
+Z7 FE:/Uni/6/DSD/HW/Tea/tea.vhd
+l0
+L6 1
+V4Mh:n@Zkn@oUJ8^=60XJ43
+!s100 U91F]7<0L=QhQz6GPO=b>0
+Z8 OV;C;2020.1;71
+31
+Z9 !s110 1626080927
+!i10b 1
+Z10 !s108 1626080925.000000
+Z11 !s90 -reportprogress|300|-93|-work|work|E:/Uni/6/DSD/HW/Tea/tea.vhd|
+Z12 !s107 E:/Uni/6/DSD/HW/Tea/tea.vhd|
+!i113 1
+Z13 o-93 -work work
+Z14 tExplicit 1 CvgOpt 0
+Aarch
+R2
+R3
+R4
+R5
+DEx4 work 3 tea 0 22 4Mh:n@Zkn@oUJ8^=60XJ43
+!i122 0
+l27
+L22 28
+V0hG=dMcPVefX4MigWMiFJ0
+!s100 ;aHhzRk>NeDHII@?nlRKB3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Etea_tb
+Z15 w1626080835
+R4
+R5
+!i122 1
+R0
+Z16 8E:/Uni/6/DSD/HW/Tea/tea_tb.vhd
+Z17 FE:/Uni/6/DSD/HW/Tea/tea_tb.vhd
+l0
+L4 1
+Ve9JCNbaMCYS`b^80m`0m?1
+!s100 F1ECTXgC1:7CXe[AE;0zD3
+R8
+32
+Z18 !s110 1626080934
+!i10b 1
+Z19 !s108 1626080934.000000
+Z20 !s90 -reportprogress|300|-work|work|E:/Uni/6/DSD/HW/Tea/tea_tb.vhd|
+!s107 E:/Uni/6/DSD/HW/Tea/tea_tb.vhd|
+!i113 1
+Z21 o-work work
+R14
+Atest
+R4
+R5
+DEx4 work 6 tea_tb 0 22 e9JCNbaMCYS`b^80m`0m?1
+!i122 1
+l37
+L7 43
+V7Vk^>JZb?za`Ao]jJ2I<g3
+!s100 A2z1Bl3ITUOjaaoVidHK43
+R8
+32
+R18
+!i10b 1
+R19
+R20
+Z22 !s107 E:/Uni/6/DSD/HW/Tea/tea_tb.vhd|
+!i113 1
+R21
+R14
