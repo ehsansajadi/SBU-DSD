@@ -1,0 +1,92 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ENTITY loopback_Device IS
+	input nRST : IN STD_LOGIC;
+	input sys_clk : IN STD_LOGIC;
+	input nPause : IN STD_LOGIC;
+	 
+	wren : OUT STD_LOGIC;
+	tx_data : OUT std_logic_vector(7 DOWNTO 0);
+	 
+	rx_data : IN std_logic_vector(7 DOWNTO 0);
+	rx_data_ready  : IN std_logic;
+	led_out : OUT std_logic_vector(7 DOWNTO 0);
+	rx_data_accept : OUT std_logic_vector(7 DOWNTO 0);
+	
+	------------------------------------------------
+	-- test vector signals should be configured 
+	-- corresponding with the design
+	-- Test design 7-bit register with enable
+	------------------------------------------------
+	cut_nrst	: OUT std_logic;
+	cut_clk  	: OUT std_logic;
+	cut_en  	: OUT std_logic;
+	cut_din  	: OUT std_logic_vector(7 DOWNTO 0);
+	cut_din  	: IN std_logic_vector(7 DOWNTO 0)
+	);
+END loopback_Device;
+
+ARCHITECTURE behavioral OF loopback_Device IS	
+	CONSTANT InputSize  : integer := 4; -- number of input bytes
+	CONSTANT OutputSize : integer := 1; -- number of output bytes
+	TYPE reg_file IS ARRAY (0 TO 15 ) OF std_logic_vector(7 DOWNTO 0);
+	TYPE lp_state IS (wait_for_data, wait_one_cycle);
+	SIGNAL state : lp_state;
+	SIGNAL input_reg, output_reg : reg_file;
+	SIGNAL icntr, ocntr : integer RANGE 0 TO 15;
+	SIGNAL dout  : std_logic_vector(7 DOWNTO 0);
+	SIGNAL led_out_temp  : std_logic_vector(7 DOWNTO 0);
+BEGIN
+
+	led_out <= icntr;
+
+	seq: PROCESS(sys_clk, nRST)
+	BEGIN
+		IF nRST = '0' THEN
+			tx_data <= (OTHERS => '0');
+			wren <= '0';
+			rx_data_accept <= '0';
+			state <= wait_state;
+			icntr <= 0;
+			ocntr <= 0;
+			led_out_temp <= (OTHERS => '0');
+		ELSIF sys_clk'EVENT AND sys_clk = '1' THEN
+			IF (nPause = '1')
+				CASE state IS
+					WHEN wait_for_data =>
+						IF rx_data_ready = '1' THEN
+							wren <= '1';
+							rx_data_accept <= '1';
+							state <= wait_one_cycle;
+							IF (icntr = InputSize)
+								tx_data <= dout;
+								icntr = 0;
+							ELSE
+								input_reg(icntr) <= rx_data;
+								tx_data <= input_reg(icntr);
+								icntr <= icntr + 1;
+							end					
+						end
+					WHEN wait_one_cycle =>
+						rx_data_accept <= '0';
+						wren <= '0';
+						state <= wait_for_data;
+					WHEN OTHERS =>					
+						wren <= '0';
+						rx_data_accept <= '0';
+						tx_data <= (OTHERS => '0');
+						state <= wait_for_data;
+				END CASE;
+			END IF;
+		END IF;
+	END PROCESS seq;
+
+--------------------------
+-- Inteface with CUT
+--------------------------
+	dout <= sum;
+	a <= input_reg(0) +  input_reg(1) ;
+	b <= input_reg(2) +  input_reg(3) ;
+	cin <= '0';
+	
+END behavioral;
